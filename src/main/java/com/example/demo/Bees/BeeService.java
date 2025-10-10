@@ -16,7 +16,7 @@ public class BeeService {
   private BeeRepo beeRepository;
 
  
-  public Object getAllStudents() {
+  public Object getAllBees() {
     return beeRepository.findAll();
   }
 
