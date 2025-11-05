@@ -10,7 +10,7 @@ import jakarta.persistence.Table;
 @Entity
 @Table (name = "Bees")
 public class Bee {
-    public class Student {
+    public class Bees {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long BeeId;
@@ -23,16 +23,16 @@ public class Bee {
   @Column(nullable = false)
   private String description;
 
-  public Bee() {
+  public Bees() {
   }
 
-  public Bee(Long BeeId, String name, String description) {
+  public Bees(Long BeeId, String name, String description) {
     this.BeeId = BeeId;
     this.name = name;
     this.description = description;
   }
 
-  public Bee(String name, String description) {
+  public Bees(String name, String description) {
     this.name = name;
     this.description = description;
   }
