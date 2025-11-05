@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.Bees.Bee;
 
-@RestController
+@Controller //MVC Controller
 public class BeeController {
     @Autowired
   private BeeService BeeService;
