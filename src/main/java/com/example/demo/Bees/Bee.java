@@ -23,16 +23,16 @@ public class Bee {
   @Column(nullable = false)
   private String description;
 
-  public Student() {
+  public Bee() {
   }
 
-  public Student(Long BeeId, String name, String description) {
+  public Bee(Long BeeId, String name, String description) {
     this.BeeId = BeeId;
     this.name = name;
     this.description = description;
   }
 
-  public Student(String name, String description) {
+  public Bee(String name, String description) {
     this.name = name;
     this.description = description;
   }
