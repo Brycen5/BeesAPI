@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.ui.Model;
 
 import com.example.demo.Bees.Bee;
 
@@ -22,27 +23,34 @@ public class BeeController {
 
  
   @GetMapping("/Bees")
-  public Object getAllBees() {
-    return BeeService.getAllBees();
+  public Object getAllBees(Model model) {
+    model.addAttribute("animalslist", BeeService.getAllBees());
+    model.addAttribute("title", "All Animals");
+    return "animal-list";
   }
 
   @GetMapping("/Bees/{id}")
-  public Bee getBeesById(@PathVariable long id) {
-    return BeeService.getBeeById(id);
+  public String getBeesById(@PathVariable long id, Model model) {
+    model.addAttribute("animal", BeeService.getBeeById(id));
+    model.addAttribute("title", "Animal #: "+ id);
+    return "animal-details";
   }
 
   @GetMapping("/Bees/name")
-  public Object getBeesByName(@RequestParam String key) {
+  public Object getBeesByName(@RequestParam String key, Model model) {
     if (key != null) {
-      return BeeService.getBeeByName(key);
+      model.addAttribute("animalslist", BeeService.getBeeByName(key));
+      model.addAttribute("title", "Animals By Name: " + key);
+      return "animal-list";
     } else {
-      return BeeService.getAllBees();
+      return "redirect:/Bees/";
     }
 }
 
 @PostMapping("/bees")
   public Object addBee(@RequestBody Bee Bee) {
-    return BeeService.addBee(Bee);
+    Bee newBee = BeeService.addBee(Bee);
+    return "redirect:/Bees/" + newBee.getBeeId();
   }
 
   @PutMapping("/bees/{id}")
